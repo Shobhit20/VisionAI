@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "219553923958",
+    "firebase_url": "https://visionai-38df8.firebaseio.com",
+    "project_id": "visionai-38df8",
+    "storage_bucket": "visionai-38df8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:219553923958:android:9bb547be16b9842e",
+        "android_client_info": {
+          "package_name": "com.example.shobhit.visionai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "219553923958-f2oslh3oejbujcooglnk4nbves6obbkt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shobhit.visionai",
+            "certificate_hash": "2665a854796694c4ee1488eb3e462fee3b612472"
+          }
+        },
+        {
+          "client_id": "219553923958-m76d6toa25i4duvfb7g1fir4a0eat13v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtDavOsgEIlFj8qmpJ_OzOJXXMl9SyAJc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "219553923958-m76d6toa25i4duvfb7g1fir4a0eat13v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
