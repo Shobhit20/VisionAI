@@ -141,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
 //                .addConverterFactory(GsonConverterFactory.create(gson))
 //                .build();
         Apiservice service = retrofit.create(Apiservice.class);
-        Student student = new Student();
-        student.setName(refreshedToken);
-        Call<ResponseBody> call = service.insertData(student.getName());
+        Token token = new Token();
+        token.setToken(refreshedToken);
+        Call<ResponseBody> call = service.insertData(token.getToken());
 
 
         call.enqueue(new Callback<ResponseBody>() {
