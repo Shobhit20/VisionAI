@@ -15,6 +15,7 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.params.StreamConfigurationMap;
 import android.media.ImageReader;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -56,6 +57,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 import okhttp3.OkHttpClient;
@@ -203,18 +205,34 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("njd" +
                         "kjskdfnf", intent.getExtras().getString("Detected"));
                 TextView textView = (TextView)findViewById(R.id.textview2);
+                det = det.replace('_',' ');
                 textView.setText(det);
-                speaking("Hello");
+                speaking(det);
             }
 
         }
     }
-    private void speaking(String correct_defn){
-        tts.speak(correct_defn, TextToSpeech.QUEUE_ADD, null);
-        boolean speakingEnd = tts.isSpeaking();
-        do{
-            speakingEnd = tts.isSpeaking();
-        } while (speakingEnd);
+    private void speaking(final String correct_defn){
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status == TextToSpeech.SUCCESS){
+                    tts.setLanguage(Locale.ENGLISH);
+
+                }
+                tts.setPitch(0.6f);
+                tts.setSpeechRate(1.0f);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                    tts.speak(correct_defn, TextToSpeech.QUEUE_FLUSH, null, null);
+                    boolean speakingEnd = tts.isSpeaking();
+                    do{
+                        speakingEnd = tts.isSpeaking();
+                    } while (speakingEnd);
+                }
+            }
+        });
+
+
 
     }
 
