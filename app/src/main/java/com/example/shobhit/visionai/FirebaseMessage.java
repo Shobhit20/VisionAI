@@ -16,11 +16,13 @@ public class FirebaseMessage extends FirebaseMessagingService {
         ;
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
-        if(remoteMessage.getNotification().getBody() != null){
-            Intent intents=new Intent();
-            intents.setAction("MyReceiver");
-            intents.putExtra("Detected", remoteMessage.getNotification().getBody());
-            getBaseContext().sendBroadcast(intents);
+        if(remoteMessage.getNotification()!= null){
+            if(remoteMessage.getNotification().getBody() != null){
+                Intent intents=new Intent();
+                intents.setAction("MyReceiver");
+                intents.putExtra("Detected", remoteMessage.getNotification().getBody());
+                getBaseContext().sendBroadcast(intents);
+            }
         }
 
 

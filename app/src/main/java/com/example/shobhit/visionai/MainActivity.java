@@ -18,6 +18,7 @@ import android.media.ImageReader;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -95,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
     private Handler mBackgroundHandler;
     private HandlerThread mBackgroundThread;
     EditText enterMessage;
+    private TextToSpeech tts;
 
     CameraDevice.StateCallback stateCallback = new CameraDevice.StateCallback() {
         @Override
@@ -187,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
         receiver = new MyReceiver();
         registerReceiver(receiver, new IntentFilter("MyReceiver"));
 
+
     }
 
     public class MyReceiver extends BroadcastReceiver {
@@ -194,13 +197,25 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.e("fbjbd","bfhbfsjf");
-            String det = intent.getExtras().getString("Detected");
 
-            Log.e("njd" +
-                    "kjskdfnf", intent.getExtras().getString("Detected"));
-            TextView textView = (TextView)findViewById(R.id.textview2);
-            textView.setText(det);
+            if(intent.getExtras().getString("Detected")!=null){
+                String det = intent.getExtras().getString("Detected");
+                Log.e("njd" +
+                        "kjskdfnf", intent.getExtras().getString("Detected"));
+                TextView textView = (TextView)findViewById(R.id.textview2);
+                textView.setText(det);
+                speaking("Hello");
+            }
+
         }
+    }
+    private void speaking(String correct_defn){
+        tts.speak(correct_defn, TextToSpeech.QUEUE_ADD, null);
+        boolean speakingEnd = tts.isSpeaking();
+        do{
+            speakingEnd = tts.isSpeaking();
+        } while (speakingEnd);
+
     }
 
     private void createCameraPreview() {
